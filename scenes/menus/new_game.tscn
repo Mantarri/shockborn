@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/fonts/default_font_menu.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/menus/scripts/new_game.gd" type="Script" id=2]
+
+[node name="NewGame" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBC" type="HBoxContainer" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBC" type="VBoxContainer" parent="HBC"]
+margin_left = 343.0
+margin_right = 937.0
+margin_bottom = 720.0
+alignment = 1
+
+[node name="SaveName" type="LineEdit" parent="HBC/VBC"]
+margin_top = 288.0
+margin_right = 594.0
+margin_bottom = 336.0
+rect_min_size = Vector2( 594, 0 )
+custom_fonts/font = ExtResource( 1 )
+align = 1
+max_length = 32
+expand_to_text_length = true
+placeholder_text = "Save Name"
+caret_blink = true
+
+[node name="CreateWorld" type="Button" parent="HBC/VBC"]
+margin_top = 340.0
+margin_right = 594.0
+margin_bottom = 384.0
+custom_fonts/font = ExtResource( 1 )
+disabled = true
+text = "Create World"
+
+[node name="Cancel" type="Button" parent="HBC/VBC"]
+margin_top = 388.0
+margin_right = 594.0
+margin_bottom = 432.0
+custom_fonts/font = ExtResource( 1 )
+text = "Cancel"
+
+[connection signal="text_changed" from="HBC/VBC/SaveName" to="." method="_on_SaveName_text_changed"]
+[connection signal="pressed" from="HBC/VBC/CreateWorld" to="." method="_on_CreateWorld_pressed"]
+[connection signal="pressed" from="HBC/VBC/Cancel" to="." method="_on_Cancel_pressed"]

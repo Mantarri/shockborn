@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/fonts/default_font_menu.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/menus/scripts/pause.gd" type="Script" id=2]
+
+[node name="Pause" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBC" type="HBoxContainer" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBC" type="VBoxContainer" parent="HBC"]
+margin_left = 343.0
+margin_right = 937.0
+margin_bottom = 720.0
+alignment = 1
+
+[node name="Resume" type="Button" parent="HBC/VBC"]
+margin_top = 266.0
+margin_right = 594.0
+margin_bottom = 310.0
+rect_min_size = Vector2( 594, 0 )
+custom_fonts/font = ExtResource( 1 )
+text = "Resume"
+
+[node name="Options" type="Button" parent="HBC/VBC"]
+margin_top = 314.0
+margin_right = 594.0
+margin_bottom = 358.0
+custom_fonts/font = ExtResource( 1 )
+text = "Options"
+
+[node name="ExitToMenu" type="Button" parent="HBC/VBC"]
+margin_top = 362.0
+margin_right = 594.0
+margin_bottom = 406.0
+custom_fonts/font = ExtResource( 1 )
+text = "Exit To Menu"
+
+[node name="ExitToDesktop" type="Button" parent="HBC/VBC"]
+margin_top = 410.0
+margin_right = 594.0
+margin_bottom = 454.0
+custom_fonts/font = ExtResource( 1 )
+text = "Exit To Desktop"
+
+[connection signal="pressed" from="HBC/VBC/Resume" to="." method="_on_Resume_pressed"]
+[connection signal="pressed" from="HBC/VBC/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="HBC/VBC/ExitToMenu" to="." method="_on_ExitToMenu_pressed"]
+[connection signal="pressed" from="HBC/VBC/ExitToDesktop" to="." method="_on_ExitToDesktop_pressed"]
