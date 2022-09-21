@@ -1,6 +1,6 @@
-extends Spatial
+extends KinematicBody
 
-class_name Move
+class_name MovePhysical
 
 export(Resource) var data : Resource
 
