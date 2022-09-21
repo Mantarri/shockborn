@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/entity/debug/debug_rocket.gd" type="Script" id=1]
+
+[sub_resource type="CylinderMesh" id=1]
+height = 4.0
+
+[node name="DebugRocket" type="MeshInstance"]
+mesh = SubResource( 1 )
+script = ExtResource( 1 )
