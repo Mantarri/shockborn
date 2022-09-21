@@ -1,0 +1,16 @@
+// Game: ShockBorn
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+"_tb_textures" "textures/objects;textures/organic"
+// brush 0
+{
+( -224 432 0 ) ( -224 -128 0 ) ( -224 -128 -16 ) objects/floor_01 0 0 0 1 1
+( -224 -128 0 ) ( 368 -128 0 ) ( 368 -128 -16 ) objects/floor_01 0 0 0 1 1
+( 368 -128 -16 ) ( 368 432 -16 ) ( -224 432 -16 ) objects/floor_01 0 0 0 1 1
+( -224 432 0 ) ( 368 432 0 ) ( 368 -128 0 ) objects/floor_01 0 0 0 1 1
+( 368 432 -16 ) ( 368 432 0 ) ( -224 432 0 ) objects/floor_01 0 0 0 1 1
+( 368 -128 0 ) ( 368 432 0 ) ( 368 432 -16 ) objects/floor_01 0 0 0 1 1
+}
+}
