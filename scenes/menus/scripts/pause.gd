@@ -10,7 +10,7 @@ func _on_Resume_pressed():
 
 
 func _on_Options_pressed():
-	pass # Replace with function body.
+	load_menu(MENU.OPTIONS)
 
 
 func _on_ExitToMenu_pressed():

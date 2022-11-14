@@ -2,9 +2,9 @@ extends Control
 
 class_name MenuManager
 
-var CurrentMenu
-onready var TransitionTween : Tween = get_node("/root/Manager/MenuManager/Transition")
-onready var MenuManager : Control = get_node("/root/Manager/MenuManager")
+var currentMenu
+onready var transitionTween : Tween = get_node("/root/Manager/MenuManager/Transition")
+onready var menuManager : Control = get_node("/root/Manager/MenuManager")
 
 enum MENU {
 	NONE,
@@ -15,7 +15,7 @@ enum MENU {
 	PAUSE
 }
 
-var Menus : Dictionary = {
+var menus : Dictionary = {
 	MENU.MAIN : load("res://scenes/menus/main_menu.tscn"),
 	MENU.NEW_GAME : load("res://scenes/menus/new_game.tscn"),
 	MENU.LOAD_GAME : load("res://scenes/menus/load_game.tscn"),
@@ -50,54 +50,54 @@ func unload_menu(menu):
 
 func _deferred_unload_menu(menu):
 	disappear()
-	TransitionTween.connect("tween_all_completed", MenuManager,
+	transitionTween.connect("tween_all_completed", menuManager,
 	"queue_free_unload_menu", [menu])
 
 func queue_free_unload_menu(menu):
-	MenuManager.get_node(MenuNames[menu]).queue_free()
-	CurrentMenu = null
-	TransitionTween.disconnect("tween_all_completed", MenuManager,
+	menuManager.get_node(MenuNames[menu]).queue_free()
+	currentMenu = null
+	transitionTween.disconnect("tween_all_completed", menuManager,
 	"queue_free_unload_menu")
 
 func load_menu(menu):
 	call_deferred("_deferred_load_menu", menu)
 
-func _deferred_load_menu(Menu):
-	if MenuManager.get_children().size() > 1:
+func _deferred_load_menu(menu):
+	if menuManager.get_children().size() > 1:
 		disappear()
-		TransitionTween.connect("tween_all_completed", MenuManager,
-		"queue_free_menu", [MenuManager.get_children()[1], Menu])
+		transitionTween.connect("tween_all_completed", menuManager,
+		"queue_free_menu", [menuManager.get_children()[1], menu])
 	else:
-			CurrentMenu = Menus[Menu]
-			CurrentMenu = CurrentMenu.instance()
-			CurrentMenu.rect_position.x = -OS.window_size.x
-			MenuManager.add_child(CurrentMenu)
-			appear(Menu)
+			currentMenu = menus[menu]
+			currentMenu = currentMenu.instance()
+			currentMenu.rect_position.x = -OS.window_size.x
+			menuManager.add_child(currentMenu)
+			appear(menu)
 
-func queue_free_menu(OldMenu, NewMenu):
-	OldMenu.queue_free()
-	CurrentMenu = Menus[NewMenu]
-	CurrentMenu = CurrentMenu.instance()
-	CurrentMenu.rect_position.x = -OS.window_size.x
-	MenuManager.add_child(CurrentMenu)
-	TransitionTween.disconnect("tween_all_completed", MenuManager,
+func queue_free_menu(oldMenu, newMenu):
+	oldMenu.queue_free()
+	currentMenu = menus[newMenu]
+	currentMenu = currentMenu.instance()
+	currentMenu.rect_position.x = -OS.window_size.x
+	menuManager.add_child(currentMenu)
+	transitionTween.disconnect("tween_all_completed", menuManager,
 	"queue_free_menu")
-	appear(NewMenu)
+	appear(newMenu)
 
-func appear(Menu):
-	var ScreenWidth : float = OS.window_size.x
+func appear(menu):
+	var screenWidth : float = OS.window_size.x
 	if Manager.config.get_value("interface", "menu_transitions") == true:
-		TransitionTween.interpolate_property(MenuManager.get_node(MenuNames[Menu]),
+		transitionTween.interpolate_property(menuManager.get_node(MenuNames[menu]),
 		"rect_position:x",
 		-1280, 0, 0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
 	
-		TransitionTween.start()
+		transitionTween.start()
 
 func disappear():
-	var ScreenWidth : float = OS.window_size.x
+	var screenWidth : float = OS.window_size.x
 	if Manager.config.get_value("interface", "menu_transitions") == true:
-		TransitionTween.interpolate_property(MenuManager.get_children()[1],
+		transitionTween.interpolate_property(menuManager.get_children()[1],
 		"rect_position:x",
-		0, -ScreenWidth, 0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
+		0, -screenWidth, 0.5, Tween.TRANS_BACK, Tween.EASE_OUT)
 	
-		TransitionTween.start()
+		transitionTween.start()

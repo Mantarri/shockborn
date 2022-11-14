@@ -12,10 +12,8 @@ func _on_Continue_pressed():
 func _on_LoadGame_pressed():
 	unload_menu(MENU.MAIN)
 	load_menu(MENU.LOAD_GAME)
-	Manager.Save = $HBC/VBC/SaveName.text
-	var gameScene : PackedScene = load("res://scenes/game.tscn")
-	var gameSceneNode = gameScene.instance()
-	Manager.add_child(gameSceneNode)
+	Manager.saveName = $HBC/VBC/SaveName.text
+	Manager.load_game_scene()
 
 
 func _on_NewGame_pressed():
@@ -25,9 +23,7 @@ func _on_NewGame_pressed():
 func _on_QuickGame_pressed():
 	unload_menu(MENU.MAIN)
 	Manager.saveName = "Test"
-	var gameScene : PackedScene = load("res://scenes/game.tscn")
-	var gameSceneNode = gameScene.instance()
-	Manager.add_child(gameSceneNode)
+	Manager.load_game_scene()
 
 
 func _on_Credits_pressed():

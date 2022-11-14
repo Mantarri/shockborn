@@ -11,8 +11,7 @@ func _on_CreateWorld_pressed():
 	unload_menu(MENU.NEW_GAME)
 	Manager.saveName = $HBC/VBC/SaveName.text
 	var gameScene : PackedScene = load("res://scenes/game.tscn")
-	var gameSceneNode = gameScene.instance()
-	Manager.add_child(gameSceneNode)
+	Manager.add_child(gameScene.instance())
 	
 
 
