@@ -1,15 +1,18 @@
 extends Node
 
 var playerName : String
+
 var saveName : String
-var config = ConfigFile.new()
+var config : ConfigFile = ConfigFile.new()
 var mainConfigPath : String = "user://config/main_settings.cfg"
-var menuManagerScene = load("res://scenes/menus/menu_manager.tscn").instance()
+
+var gamePackedScene : PackedScene = preload("res://scenes/game.tscn")
+var menuManagerScene = preload("res://scenes/menus/menu_manager.tscn").instance()
+
 onready var menuManager = get_node("MenuManager")
-var game : Node
+var game : Game
 
 func _init():
-	pass
 	add_child(menuManagerScene)
 
 func _ready():
@@ -32,14 +35,32 @@ func _ready():
 	
 		if not config.has_section_key("interface", "menu_transitions"):
 			config.set_value("interface", "menu_transitions", true)
+
+		if not config.has_section_key("hud", "display_fps"):
+			Manager.config.set_value("hud", "display_fps", true)
+		
+		if not config.has_section_key("hud", "display_position"):
+			Manager.config.set_value("hud", "display_position", true)
 	
 		config.save(mainConfigPath)
 	
 	menuManager.load_menu(MenuManager.MENU.MAIN)
 
-func set_game_property(game_ : Node):
-	game = game_
+func load_game_scene():
+	var gameScene : Game = gamePackedScene.instance()
+	add_child(gameScene)
 
 func unload_game():
 	get_node("/root/Manager/Game").save()
 	get_node("/root/Manager/Game").queue_free()
+
+func get_entity_map(entity : Entity):
+	var meshIntances : Array
+	
+	for i in entity.owner.get_node("NavigationMeshInstance").get_children():
+		if i is NavigationMeshInstance:
+			meshIntances.append(i)
+	if meshIntances.size() > 0:
+		return meshIntances[0].navmesh
+	else:
+		return null

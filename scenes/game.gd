@@ -15,9 +15,11 @@ var types : Array
 var coreTypesDir : String = "res://scenes/types/"
 
 var entities : Dictionary
-var coreEntitiesDir : String = "res://scenes/entities"
+var coreEntitiesDir : String = "res://scenes/entities/"
 
 var coreSensorsDir : String = "res://scenes/sensors/"
+
+var coreMusicDir : String = "res://assets/audio/music/"
 
 var hud : Control = preload("res://scenes/ui/hud.tscn").instance()
 var worlds : Array = [
@@ -55,8 +57,23 @@ func _ready():
 	add_to_group("persist")
 	
 	add_child(hud)
+	
+	if dir.open(coreMusicDir) == OK:
+		dir.list_dir_begin(true, true)
+		var rng : RandomNumberGenerator = RandomNumberGenerator.new()
+		rng.set_seed(randi())
+		var music : Array = []
+		var fileName : String = dir.get_next()
+		while fileName != "":
+			if fileName.get_extension() == "ogg":
+				music.append(coreMusicDir + fileName)
+			fileName = dir.get_next()
+		
+		if music.size() > 0:
+			$MusicPlayer.stream = load(music[rng.randi_range(0, music.size() - 1)])
+			#$MusicPlayer.play()
 
-func load_resources(dirPath : String, extension : String, resourceId : String, resourceNamespace : String, namespace : String = "shockborn"):
+func load_resources(dirPath : String, extension : String, resourceId : String, resourceNamespace : String):
 	var dir : Directory = Directory.new()
 	if dir.open(dirPath) == OK:
 		dir.list_dir_begin(true, false)
@@ -64,7 +81,7 @@ func load_resources(dirPath : String, extension : String, resourceId : String, r
 		while fileName != "":
 			var fullPath : String = dir.get_current_dir().plus_file(fileName)
 			if dir.current_is_dir():
-				load_resources(fullPath, extension, resourceId, resourceNamespace, namespace)
+				load_resources(fullPath, extension, resourceId, resourceNamespace)
 			elif fileName.get_extension() == extension:
 				var packedScene : PackedScene = load(fullPath)
 				var sceneState : SceneState = packedScene.get_state()
@@ -74,17 +91,20 @@ func load_resources(dirPath : String, extension : String, resourceId : String, r
 							if sceneState.get_node_property_value(nodeID, propID) is String:
 								if not resources.has(resourceNamespace):
 									resources[resourceNamespace] = {}
-								resources[resourceNamespace][namespace + ":" + sceneState.get_node_property_value(nodeID, propID)] = packedScene
+								resources[resourceNamespace][sceneState.get_node_property_value(nodeID, propID)] = packedScene
 			
 			fileName = dir.get_next()
 	else:
 		push_warning("Could not open/find directory at `" + dirPath + "` while attempting to load: " + resourceNamespace)
 
-func get_resource(id : String, resourceNamespace : String, namespace : String = "shockborn") -> PackedScene:
-	return resources[resourceNamespace][namespace + ":" + id]
+func get_resource(id : String, resourceNamespace : String) -> PackedScene:
+	return resources[resourceNamespace][id]
 
-func spawn_entity(entityId : String, namespace : String = "shockborn", translation : Vector3 = Vector3.ZERO, rotation : Vector3 = Vector3.ZERO):
-	var entity : Entity = get_resource(entityId, "entities", namespace).instance()
+func has_resource(id : String, resourceNamespace : String) -> bool:
+	return resources.has(resourceNamespace) and resources[resourceNamespace].has(id)
+
+func spawn_entity(entityId : String, translation : Vector3 = Vector3.ZERO, rotation : Vector3 = Vector3.ZERO):
+	var entity : Entity = get_resource(entityId, "entities").instance()
 	entity.global_translation = translation
 	entity.rotation = rotation
 

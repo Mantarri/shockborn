@@ -9,10 +9,105 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Task",
+"class": "Air",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/leaves/air.gd"
+}, {
+"base": "Projectile",
+"class": "ArrowPiercing",
+"language": "GDScript",
+"path": "res://scenes/entities/projectiles/arrow_piercing/arrow_piercing.gd"
+}, {
+"base": "TaskPlayer",
+"class": "AttackExecutor",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/composite/attack_executor.gd"
+}, {
+"base": "Reference",
+"class": "Blackboard",
+"language": "GDScript",
+"path": "res://scenes/btree/core/blackboard.gd"
+}, {
+"base": "Reference",
+"class": "Energy",
+"language": "GDScript",
+"path": "res://scenes/entities/components/energy.gd"
+}, {
 "base": "KinematicBody",
 "class": "Entity",
 "language": "GDScript",
-"path": "res://scenes/entity/entity.gd"
+"path": "res://scenes/entities/entity.gd"
+}, {
+"base": "Spatial",
+"class": "EntitySpawner",
+"language": "GDScript",
+"path": "res://scenes/spawners/spawner.gd"
+}, {
+"base": "Task",
+"class": "Fail",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/leaves/fail.gd"
+}, {
+"base": "Node",
+"class": "Game",
+"language": "GDScript",
+"path": "res://scenes/game.gd"
+}, {
+"base": "Spatial",
+"class": "GameWorld",
+"language": "GDScript",
+"path": "res://scenes/world.gd"
+}, {
+"base": "TaskViopa",
+"class": "GetTargets",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/leaves/get_targets.gd"
+}, {
+"base": "TaskViopa",
+"class": "GoalSelectorViopa",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/composite/goal_selector_viopa.gd"
+}, {
+"base": "TaskViopa",
+"class": "HasTargets",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/leaves/has_targets.gd"
+}, {
+"base": "Task",
+"class": "InputIdle",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/leaves/input_idle.gd"
+}, {
+"base": "TaskPlayer",
+"class": "InputJump",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/leaves/input_jump.gd"
+}, {
+"base": "TaskPlayer",
+"class": "InputMoveSequencer",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/composite/input_move_sequencer.gd"
+}, {
+"base": "TaskPlayer",
+"class": "InputPrimary",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/leaves/input_primary.gd"
+}, {
+"base": "TaskPlayer",
+"class": "InputSprint",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/leaves/input_sprint.gd"
+}, {
+"base": "TaskPlayer",
+"class": "InputWalk",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/leaves/input_walk.gd"
+}, {
+"base": "Task",
+"class": "Invert",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/decorators/invert.gd"
 }, {
 "base": "LiquidLayer",
 "class": "LavaLayer",
@@ -29,15 +124,75 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/menus/scripts/menu_manager.gd"
 }, {
-"base": "Resource",
+"base": "Spatial",
 "class": "Move",
 "language": "GDScript",
-"path": "res://scenes/entity/moves/move.gd"
+"path": "res://scenes/moves/move.gd"
+}, {
+"base": "Spatial",
+"class": "MoveClimb",
+"language": "GDScript",
+"path": "res://scenes/moves/normal/climb.gd"
+}, {
+"base": "Resource",
+"class": "MoveData",
+"language": "GDScript",
+"path": "res://scenes/moves/move_data.gd"
+}, {
+"base": "TaskViopa",
+"class": "MoveForward",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/leaves/move_forward.gd"
+}, {
+"base": "TaskViopaMovement",
+"class": "MovementChase",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/leaves/movement_chase.gd"
+}, {
+"base": "TaskViopaMovement",
+"class": "MovementFoward",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/leaves/movement_forwards.gd"
+}, {
+"base": "TaskViopa",
+"class": "MovementGenericViopa",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/composite/movement_generic_viopa.gd"
+}, {
+"base": "TaskViopa",
+"class": "MovementNavServerViopa",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/composite/movement_navserver_viopa.gd"
+}, {
+"base": "Task",
+"class": "MovementSelector",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/composite/movement_selector.gd"
+}, {
+"base": "TaskViopaMovement",
+"class": "MovementSideways",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/leaves/movement_sideways.gd"
+}, {
+"base": "TaskViopaMovement",
+"class": "MovementSpawnWander",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/leaves/movement_spawn_wander.gd"
+}, {
+"base": "TaskViopa",
+"class": "MovementWanderNoise",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/composite/movement_wander_noise.gd"
 }, {
 "base": "Spatial",
 "class": "OrbitArm",
 "language": "GDScript",
 "path": "res://addons/qodot/example_scenes/2-miscallaneous/1-runtime-map-building/orbit_arm.gd"
+}, {
+"base": "Task",
+"class": "Parallel",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/composite/parallel.gd"
 }, {
 "base": "PhysicsEntity",
 "class": "PhysicsBall",
@@ -49,15 +204,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/qodot/game_definitions/fgd/solid_classes/physics.gd"
 }, {
-"base": "State",
-"class": "PlayerState",
+"base": "Task",
+"class": "Print",
 "language": "GDScript",
-"path": "res://scenes/entity/state_machine/core/player_state.gd"
+"path": "res://scenes/btree/tasks/leaves/print.gd"
 }, {
-"base": "Resource",
-"class": "PlyMesh",
+"base": "RigidBody",
+"class": "Projectile",
 "language": "GDScript",
-"path": "res://addons/ply/resources/ply_mesh.gd"
+"path": "res://scenes/entities/projectiles/projectile.gd"
 }, {
 "base": "Reference",
 "class": "QodotDependencies",
@@ -164,20 +319,60 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/qodot/src/import_plugins/quake_wad_import_plugin.gd"
 }, {
+"base": "Task",
+"class": "RandomSelector",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/composite/random.gd"
+}, {
+"base": "Task",
+"class": "Repeat",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/decorators/repeat.gd"
+}, {
+"base": "Task",
+"class": "Selector",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/composite/selector.gd"
+}, {
+"base": "Spatial",
+"class": "Sensor",
+"language": "GDScript",
+"path": "res://scenes/sensors/sensor.gd"
+}, {
+"base": "Task",
+"class": "Sequence",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/composite/sequence.gd"
+}, {
 "base": "LiquidLayer",
 "class": "SlimeLayer",
 "language": "GDScript",
 "path": "res://addons/qodot/game_definitions/worldspawn_layers/liquid/slime.gd"
 }, {
 "base": "Node",
-"class": "State",
+"class": "Task",
 "language": "GDScript",
-"path": "res://scenes/entity/state_machine/core/state.gd"
+"path": "res://scenes/btree/core/task.gd"
+}, {
+"base": "Task",
+"class": "TaskPlayer",
+"language": "GDScript",
+"path": "res://scenes/btree/core/task_player.gd"
+}, {
+"base": "Task",
+"class": "TaskViopa",
+"language": "GDScript",
+"path": "res://scenes/btree/core/task_viopa.gd"
+}, {
+"base": "TaskViopa",
+"class": "TaskViopaMovement",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/leaves/movement_viopa.gd"
 }, {
 "base": "Node",
-"class": "StateManager",
+"class": "TreeRoot",
 "language": "GDScript",
-"path": "res://scenes/entity/state_machine/core/state_manager.gd"
+"path": "res://scenes/btree/core/tree_root.gd"
 }, {
 "base": "Resource",
 "class": "TrenchBroomFaceAttrib",
@@ -202,39 +397,85 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Type",
 "language": "GDScript",
-"path": "res://scenes/entity/types/type.gd"
+"path": "res://scenes/types/type.gd"
 }, {
 "base": "Entity",
 "class": "Viopa",
 "language": "GDScript",
-"path": "res://scenes/entity/viopa/viopa.gd"
+"path": "res://scenes/entities/viopa/viopa.gd"
+}, {
+"base": "Viopa",
+"class": "ViopaNPC",
+"language": "GDScript",
+"path": "res://scenes/entities/viopa/npc/viopa_npc.gd"
 }, {
 "base": "Viopa",
 "class": "ViopaPlayer",
 "language": "GDScript",
-"path": "res://scenes/entity/viopa/player/viopa_player.gd"
+"path": "res://scenes/entities/viopa/player/viopa_player.gd"
 }, {
-"base": "State",
-"class": "ViopaState",
+"base": "Sensor",
+"class": "VisualSensor",
 "language": "GDScript",
-"path": "res://scenes/entity/state_machine/core/viopa_state.gd"
+"path": "res://scenes/sensors/visual_scan/visual_scan.gd"
+}, {
+"base": "TaskViopa",
+"class": "WanderLegacy",
+"language": "GDScript",
+"path": "res://scenes/btree/tasks/leaves/wander_legacy.gd"
 }, {
 "base": "LiquidLayer",
 "class": "WaterLayer",
 "language": "GDScript",
 "path": "res://addons/qodot/game_definitions/worldspawn_layers/liquid/water.gd"
+}, {
+"base": "Move",
+"class": "Weld",
+"language": "GDScript",
+"path": "res://scenes/moves/heat/weld/weld.gd"
 } ]
 _global_script_class_icons={
+"Air": "",
+"ArrowPiercing": "",
+"AttackExecutor": "",
+"Blackboard": "",
+"Energy": "",
 "Entity": "",
+"EntitySpawner": "",
+"Fail": "",
+"Game": "",
+"GameWorld": "",
+"GetTargets": "",
+"GoalSelectorViopa": "",
+"HasTargets": "",
+"InputIdle": "",
+"InputJump": "",
+"InputMoveSequencer": "",
+"InputPrimary": "",
+"InputSprint": "",
+"InputWalk": "",
+"Invert": "",
 "LavaLayer": "",
 "LiquidLayer": "",
 "MenuManager": "",
 "Move": "",
+"MoveClimb": "",
+"MoveData": "",
+"MoveForward": "",
+"MovementChase": "",
+"MovementFoward": "",
+"MovementGenericViopa": "",
+"MovementNavServerViopa": "",
+"MovementSelector": "",
+"MovementSideways": "",
+"MovementSpawnWander": "",
+"MovementWanderNoise": "",
 "OrbitArm": "",
+"Parallel": "",
 "PhysicsBall": "",
 "PhysicsEntity": "",
-"PlayerState": "",
-"PlyMesh": "",
+"Print": "",
+"Projectile": "",
 "QodotDependencies": "",
 "QodotEntity": "",
 "QodotFGDBaseClass": "",
@@ -256,18 +497,29 @@ _global_script_class_icons={
 "QuakePaletteImportPlugin": "",
 "QuakeWadFile": "",
 "QuakeWadImportPlugin": "",
+"RandomSelector": "",
+"Repeat": "",
+"Selector": "",
+"Sensor": "",
+"Sequence": "",
 "SlimeLayer": "",
-"State": "",
-"StateManager": "",
+"Task": "",
+"TaskPlayer": "",
+"TaskViopa": "",
+"TaskViopaMovement": "",
+"TreeRoot": "",
 "TrenchBroomFaceAttrib": "",
 "TrenchBroomGameConfigFile": "",
 "TrenchBroomGameConfigFolder": "",
 "TrenchBroomTag": "",
 "Type": "",
 "Viopa": "",
+"ViopaNPC": "",
 "ViopaPlayer": "",
-"ViopaState": "",
-"WaterLayer": ""
+"VisualSensor": "",
+"WanderLegacy": "",
+"WaterLayer": "",
+"Weld": ""
 }
 
 [application]
@@ -283,6 +535,7 @@ Manager="*res://scenes/core/manager.gd"
 
 [debug]
 
+gdscript/completion/autocomplete_setters_and_getters=true
 gdscript/warnings/unused_variable=false
 gdscript/warnings/return_value_discarded=false
 
@@ -290,31 +543,70 @@ gdscript/warnings/return_value_discarded=false
 
 window/size/width=1280
 window/size/height=720
+window/vsync/use_vsync=false
+window/stretch/mode="2d"
 
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/qodot/plugin.cfg" )
+
+[global]
+
+verbose=false
+class=false
+
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 2,
+"compress/normal_map": 0,
+"detect_3d": false,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": true,
+"flags/srgb": 1,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
+ogg_vorbis={
+"loop": false,
+"loop_offset": 0
+}
 
 [input]
 
 movement_forward={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":-1.0,"script":null)
  ]
 }
 movement_backward={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
  ]
 }
 movement_left={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":-1.0,"script":null)
  ]
 }
 movement_right={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
  ]
 }
 movement_sprint={

@@ -10,10 +10,11 @@ func _on_Continue_pressed():
 
 
 func _on_LoadGame_pressed():
-	unload_menu(MENU.MAIN)
-	load_menu(MENU.LOAD_GAME)
-	Manager.saveName = $HBC/VBC/SaveName.text
-	Manager.load_game_scene()
+	pass
+	#unload_menu(MENU.MAIN)
+	#load_menu(MENU.LOAD_GAME)
+	#Manager.saveName = $HBC/VBC/SaveName.text
+	#Manager.load_game_scene()
 
 
 func _on_NewGame_pressed():
